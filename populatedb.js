@@ -19,7 +19,7 @@ var BookInstance = require('./models/bookinstanceModel')
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
-mongoose.connect('mongodb+srv://mahbubd33:mahbubd33@cluster0.wqmci.mongodb.net/local-library?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
