@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const GenreSchema = new mongoose.Schema({
 	name: { type: String, required: true, min: 3, max: 100 },
-	enum: { fiction, romance, non_fiction, military, history },
+	enum: [ 'fiction', 'romance', 'non_fiction', 'military', 'history' ],
 });
 
 // Virtual for book's URL
