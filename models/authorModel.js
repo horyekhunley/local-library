@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { DateTime } = require("luxon");  //for date handling
 
 const AuthorSchema = new mongoose.Schema({
 	first_name: { type: String, required: true, maxLength: 100 },
@@ -38,6 +39,15 @@ AuthorSchema.virtual("lifespan").get(function () {
 AuthorSchema.virtual("url").get(function () {
 	return "/catalog/author/" + this._id;
 });
+//To format the date of birth
+AuthorSchema.virtual('date_of_birth_yyyy_mm_dd').get(function() {
+  return DateTime.fromJSDate(this.date_of_birth).toISODate(); //format 'YYYY-MM-DD'
+});
+//to format the date of death well
+AuthorSchema.virtual('date_of_death_yyyy_mm_dd').get(function() {
+  return DateTime.fromJSDate(this.date_of_death).toISODate(); //format 'YYYY-MM-DD'
+});
+
 
 //Export model
 module.exports = mongoose.model("Author", AuthorSchema);
